@@ -1,0 +1,59 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- 纸张纹理滤镜 -->
+        <filter id="paperTexture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+            <feDiffuseLighting in="noise" lighting-color="#fdf5e6" surfaceScale="2">
+                <feDistantLight azimuth="45" elevation="60"/>
+            </feDiffuseLighting>
+        </filter>
+        
+        <!-- 雾气渐变 -->
+        <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#fdf5e6;stop-opacity:0" />
+            <stop offset="50%" style="stop-color:#fdf5e6;stop-opacity:0.5" />
+            <stop offset="100%" style="stop-color:#fdf5e6;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- 背景色 -->
+    <rect width="100%" height="100%" fill="#f3e5ce" opacity="0.3"/>
+
+    <!-- 远山 (淡色) -->
+    <path d="M0 600 L0 450 Q 200 400 400 480 T 800 420 L 800 600 Z" fill="#d7ccc8" opacity="0.5"/>
+
+    <!-- 城堡剪影 (主视觉) -->
+    <g transform="translate(100, 100) scale(1.2)" fill="#5d4037" opacity="0.2">
+        <!-- 主塔楼 -->
+        <path d="M300 400 L300 250 L320 200 L340 250 L340 400 Z" />
+        <rect x="310" y="260" width="20" height="30" rx="10" fill="#fdf5e6" opacity="0.5"/>
+        
+        <!-- 左侧尖塔 -->
+        <path d="M250 400 L250 280 L265 240 L280 280 L280 400 Z" />
+        <rect x="258" y="290" width="14" height="20" rx="5" fill="#fdf5e6" opacity="0.5"/>
+
+        <!-- 右侧建筑群 -->
+        <path d="M360 400 L360 300 L450 320 L450 400 Z" />
+        <path d="M380 300 L380 180 L395 150 L410 180 L410 310 Z" />
+        
+        <!-- 桥梁连接 -->
+        <path d="M200 350 Q 250 380 300 350 L 300 360 Q 250 390 200 360 Z" />
+        <path d="M150 400 L150 280 L170 230 L190 280 L190 400 Z" />
+    </g>
+    
+    <!-- 近景树林 -->
+    <path d="M-50 600 L-50 550 Q 100 520 200 580 T 500 560 T 850 580 L 850 600 Z" fill="#3e2723" opacity="0.1"/>
+
+    <!-- 飞鸟 -->
+    <g transform="translate(500, 150) scale(0.5)" fill="#3e2723" opacity="0.4">
+        <path d="M0 0 Q 10 -10 20 0 Q 10 5 0 0 Z" />
+        <path d="M30 20 Q 40 10 50 20 Q 40 25 30 20 Z" />
+        <path d="M-20 30 Q -10 20 0 30 Q -10 35 -20 30 Z" />
+    </g>
+
+    <!-- 叠加纹理 -->
+    <rect width="100%" height="100%" filter="url(#paperTexture)" opacity="0.4"/>
+    
+    <!-- 底部雾气遮罩 (让底部自然融合进纸张) -->
+    <rect width="100%" height="100%" fill="url(#skyGradient)"/>
+</svg>
